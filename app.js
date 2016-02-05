@@ -18,8 +18,9 @@ var scrape = require('./routes/scrape');
 var users = require('./routes/users');
 
 var app = express();
+var http = require('http');
 
-app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 8080);
 app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 
 
