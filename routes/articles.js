@@ -18,7 +18,7 @@ var Article = mongoose.model('Article');
 * This controller function just show a limited number of articles depending
 * on a POST parameter sended
 **/
-router.post('/list', function(req, res, next) {
+router.get('/list', function(req, res, next) {
 
 	var OFFSET = req.body.offset;
 	if(!OFFSET) OFFSET = 0;
