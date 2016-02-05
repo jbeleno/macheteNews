@@ -113,7 +113,14 @@ var SampleApp = function() {
      */
     self.initializeServer = function() {
         self.createRoutes();
-        self.app = express.createServer();
+        self.app  = express();
+ 
+        //This uses the Connect frameworks body parser to parse the body of the post request  
+        self.app.configure(function () {
+          self.app.use(express.bodyParser());
+          self.app.use(express.methodOverride());
+          self.app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+        });
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
