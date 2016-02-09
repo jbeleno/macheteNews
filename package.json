@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node app.js --websocket-port=$OPENSHIFT_NODEJS_PORT --log-level=1",
+    "start": "node ./bin/www --websocket-port=$OPENSHIFT_NODEJS_PORT --log-level=1",
     "install": "cd node_modules/iconv; node-gyp rebuild"
   },
   "main": "app.js",
