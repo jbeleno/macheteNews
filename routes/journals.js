@@ -10,6 +10,8 @@
 **/
 
 var folhadeSPaulo = require('../helpers/information/folhadesaopaulo');
+var OTempo = require('../helpers/information/otempo');
+var OGlobo = require('../helpers/information/oglobo');
 var express 	  = require('express');
 var router 		  = express.Router();
 var mongoose 	  = require('mongoose');
@@ -44,4 +46,59 @@ router.get('/createfdsp', function(req, res, next) {
 	res.json(fdsp);
 });
 
+/**
+* This controller function is to collect all the basic information about
+* the RSS feed from the journal O Globo
+**/
+router.get('/createoglobo', function(req, res, next) {
+	var O_Globo = new Journal ({
+		name : 		OGlobo.info.name,
+		country: 	OGlobo.info.country,
+		url: 		OGlobo.info.url
+	});
+	O_Globo.save(function (err) {if (err) console.log ('Error on save!')});
+
+
+	for (var i = 0; i < OGlobo.categories.length; i++) {
+		var OGloboFeed = new RssFeed ({
+			name : 		OGlobo.categories[i].name,
+			url: 		OGlobo.categories[i].url,
+			date: 	    OGlobo.categories[i].date,
+			journal: 	O_Globo._id
+		});
+		OGloboFeed.save(function (err) {
+			if (err) console.log ('Error on save!')
+		});	
+	};
+
+	res.json(O_Globo);
+});
+
+/**
+* This controller function is to collect all the basic information about
+* the RSS feed from the journal O Tempo
+**/
+router.get('/createotempo', function(req, res, next) {
+	var O_Tempo = new Journal ({
+		name : 		OTempo.info.name,
+		country: 	OTempo.info.country,
+		url: 		OTempo.info.url
+	});
+	O_Tempo.save(function (err) {if (err) console.log ('Error on save!')});
+
+
+	for (var i = 0; i < OTempo.categories.length; i++) {
+		var OTempoFeed = new RssFeed ({
+			name : 		OTempo.categories[i].name,
+			url: 		OTempo.categories[i].url,
+			date: 	    OTempo.categories[i].date,
+			journal: 	O_Tempo._id
+		});
+		OTempoFeed.save(function (err) {
+			if (err) console.log ('Error on save!')
+		});	
+	};
+
+	res.json(O_Tempo);
+});
 module.exports = router;
