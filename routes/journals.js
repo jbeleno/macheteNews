@@ -22,7 +22,7 @@ var RssFeed		  = mongoose.model('RssFeed');
 * This controller function is to collect all the basic information about
 * the RSS feed from the journal Folha de S.Paulo
 **/
-router.get('/createfdsp', function(req, res, next) {
+router.post('/createfdsp', function(req, res, next) {
 	var fdsp = new Journal ({
 		name : 		folhadeSPaulo.info.name,
 		country: 	folhadeSPaulo.info.country,
@@ -50,7 +50,7 @@ router.get('/createfdsp', function(req, res, next) {
 * This controller function is to collect all the basic information about
 * the RSS feed from the journal O Globo
 **/
-router.get('/createoglobo', function(req, res, next) {
+router.post('/createoglobo', function(req, res, next) {
 	var O_Globo = new Journal ({
 		name : 		OGlobo.info.name,
 		country: 	OGlobo.info.country,
@@ -78,7 +78,7 @@ router.get('/createoglobo', function(req, res, next) {
 * This controller function is to collect all the basic information about
 * the RSS feed from the journal O Tempo
 **/
-router.get('/createotempo', function(req, res, next) {
+router.post('/createotempo', function(req, res, next) {
 	var O_Tempo = new Journal ({
 		name : 		OTempo.info.name,
 		country: 	OTempo.info.country,
