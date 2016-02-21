@@ -76,7 +76,7 @@ exports.categories = [
 		date: 			new Date().toISOString()
 	},{
 		name:   		"Super Notícia",
-		url: 			"www.otempo.com.br/rss/super-noticia",
+		url: 			"http://www.otempo.com.br/rss/super-noticia",
 		date: 			new Date().toISOString()
 	},{
 		name:   		"Jornal Pampulha",
