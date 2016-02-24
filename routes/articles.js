@@ -10,6 +10,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var striptags = require('striptags');
 var mongoose = require('mongoose');
 var Article = mongoose.model('Article');
 
@@ -35,6 +36,11 @@ router.post('/list', function(req, res, next) {
 				}
 			);
 		}else{
+
+			for(var i = 0; i < articles.length; i++){
+				articles[i].description = striptags(articles[i].description);
+			}
+
 		  	res.json(
 		  		{
 		  			status: "OK",
