@@ -26,6 +26,8 @@ router.post('/list', function(req, res, next) {
 
 	var LIMIT = 10;
 
+	OFFSET = LIMIT*OFFSET;
+
 	var articlesList = Article.find({}).sort({'pubDate': -1}).skip(OFFSET).limit(LIMIT);
 	articlesList.exec(function(err, articles) {
 		if (err) {
