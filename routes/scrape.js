@@ -29,13 +29,15 @@ router.get('/all', function(req, res, next) {
 	  			Journal.findOne({ '_id': rss._id }, 'name', function (err, journalItem) {
 		  			if (err) console.log('Problems in finding an article');
  
-		    		var articles = scraper.fetch(rss.url, rss._id, journalItem.name);
+ 					if(journalItem){
+		    			var articles = scraper.fetch(rss.url, rss._id, journalItem.name); 
+		    		}
 	    		});
 	  		});
 		}
 	});
 
-  	res.json({status: "OK"});
+  	//res.json({status: "OK"});
 
 });
 //DEBUG=macheteNews:* npm start
