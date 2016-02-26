@@ -29,9 +29,7 @@ router.get('/all', function(req, res, next) {
 	  			Journal.findOne({ '_id': rss._id }, 'name', function (err, journalItem) {
 		  			if (err) console.log('Problems in finding an article');
  
- 					if(journalItem){
-		    			var articles = scraper.fetch(rss.url, rss._id, journalItem.name); 
-		    		}
+		    		var articles = scraper.fetch(rss.url, rss._id, journalItem.name);
 	    		});
 	  		});
 		}
