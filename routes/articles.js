@@ -31,7 +31,7 @@ router.post('/list', function(req, res, next) {
 
 	OFFSET = LIMIT*OFFSET;
 
-	var articlesList = Article.find({}).sort({'pubDate': -1, 'categories':{ $in:[TAG]}}).skip(OFFSET).limit(LIMIT);
+	var articlesList = Article.find({'categories':{ $in:[TAG]}}).sort({'pubDate': -1}).skip(OFFSET).limit(LIMIT);
 	articlesList.exec(function(err, articles) {
 		if (err) {
 			res.json(
