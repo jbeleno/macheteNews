@@ -122,17 +122,17 @@ var save = function(post, id_rss){
 			];
 
 			if(SportTags.indexOf(id_rss.$oid) >= 0){
-				data.categories = "Esportes";
+				data.categories = ["Esportes"];
 			}else if(PoliticTags.indexOf(id_rss.$oid) >= 0){
-				data.categories = "Política";
+				data.categories = ["Política"];
 			}else if(TechnologyTags.indexOf(id_rss.$oid) >= 0){
-				data.categories = "Tecnologia";
+				data.categories = ["Tecnologia"];
 			}else if(WorldTags.indexOf(id_rss.$oid) >= 0){
-				data.categories = "Internacional";
+				data.categories = ["Internacional"];
 			}else if(EconomyTags.indexOf(id_rss.$oid) >= 0){
-				data.categories = "Economia";
+				data.categories = ["Economia"];
 			}else if(DailyTags.indexOf(id_rss.$oid) >= 0){
-				data.categories = "Cotidiano";
+				data.categories = ["Cotidiano"];
 			}
 
 		  	var art = new Article(data);
