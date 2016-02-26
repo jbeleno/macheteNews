@@ -26,7 +26,7 @@ router.get('/all', function(req, res, next) {
 		if (err) console.log('Error reading the RSS');
 		else{
 	  		RssFeeds.forEach(function(rss) {
-	  			Journal.findOne({ '_id': rss._id }, 'name', function (err, journalItem) {
+	  			Journal.findOne({ '_id': rss.journal }, 'name', function (err, journalItem) {
 		  			if (err) console.log('Problems in finding an article');
  
  					if(journalItem){
@@ -37,7 +37,7 @@ router.get('/all', function(req, res, next) {
 		}
 	});
 
-  	//res.json({status: "OK"});
+  	res.json({status: "OK"});
 
 });
 //DEBUG=macheteNews:* npm start
