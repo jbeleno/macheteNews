@@ -24,11 +24,14 @@ router.post('/list', function(req, res, next) {
 	var OFFSET = req.body.offset;
 	if(!OFFSET) OFFSET = 0;
 
+	var TAG = req.body.tag;
+	if(!TAG) TAG = "Esportes";
+
 	var LIMIT = 10;
 
 	OFFSET = LIMIT*OFFSET;
 
-	var articlesList = Article.find({}).sort({'pubDate': -1}).skip(OFFSET).limit(LIMIT);
+	var articlesList = Article.find({}).sort({'pubDate': -1, 'categories':{ $in:[TAG]}}).skip(OFFSET).limit(LIMIT);
 	articlesList.exec(function(err, articles) {
 		if (err) {
 			res.json(
