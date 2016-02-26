@@ -26,7 +26,7 @@ Article = mongoose.model('Article');
 * This function collects the basic information about each article reported in the RSS
 * and stores them in a mongo database
 **/
-exports.fetch = function(feed, id_rss) {
+exports.fetch = function(feed, id_rss, journal_name) {
   	// Define our streams
   	var req = request(feed, {timeout: 10000, pool: false, encoding: null});
   	req.setMaxListeners(50);
@@ -55,7 +55,7 @@ exports.fetch = function(feed, id_rss) {
 	feedparser.on('readable', function() {
 		var post;
 		while (post = this.read()) {
-			save(post, id_rss);
+			save(post, id_rss, journal_name);
 		}
 	});
 }
@@ -63,7 +63,7 @@ exports.fetch = function(feed, id_rss) {
 /**
 * This function saves the article item if doesn't exist yet
 **/
-var save = function(post, id_rss){
+var save = function(post, id_rss, journal_name){
 	if(post){
 		// First I see if the article exist, if not I include it in the database
 		Article.findOne({ 'title': post.title }, 'title', function (err, articleItem) {
@@ -75,6 +75,7 @@ var save = function(post, id_rss){
 				description: 	post.description,
 				link: 			post.link,
 				pubDate: 		post.pubDate,
+				journal: 		journal_name,
 				rss: 			id_rss
 			};
 

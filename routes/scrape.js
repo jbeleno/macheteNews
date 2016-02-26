@@ -13,6 +13,7 @@ var scraper = require('../models/rss_feed');
 var router = express.Router();
 var mongoose = require('mongoose');
 var RssFeed = mongoose.model('RssFeed');
+var Journal = mongoose.model('Journal');
 
 
 /** 
@@ -25,7 +26,13 @@ router.get('/all', function(req, res, next) {
 		if (err) console.log('Error reading the RSS');
 		else{
 	  		RssFeeds.forEach(function(rss) {
-	    		var articles = scraper.fetch(rss.url, rss._id); 
+	  			Journal.findOne({ '_id': rss._id }, 'name', function (err, journalItem) {
+		  			if (err) console.log('Problems in finding an article');
+ 
+ 					if(journalItem){
+		    			var articles = scraper.fetch(rss.url, rss._id, journalItem.name); 
+		    		}
+	    		});
 	  		});
 		}
 	});

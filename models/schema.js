@@ -46,6 +46,7 @@ var ArticleSchema = new Schema({
   	pubDate: 	{ type: Date, default: Date.now },
   	date: 		{ type: Date, default: Date.now },
   	categories: { type : Object , default : {} },
+  	journal: 	{ type : String },
   	rss:    	{ type: ObjectId, ref: 'RssFeedSchema' }
 });
 									
