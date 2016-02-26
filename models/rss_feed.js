@@ -121,17 +121,17 @@ var save = function(post, id_rss){
 				"56c8fbdda9899870208f1cd3"
 			];
 
-			if(SportTags.indexOf(id_rss.$oid.toString()) >= 0){
+			if(SportTags.indexOf(id_rss.toString()) >= 0){
 				data.categories = ["Esportes"];
-			}else if(PoliticTags.indexOf(id_rss.$oid.toString()) >= 0){
+			}else if(PoliticTags.indexOf(id_rss.toString()) >= 0){
 				data.categories = ["Política"];
-			}else if(TechnologyTags.indexOf(id_rss.$oid.toString()) >= 0){
+			}else if(TechnologyTags.indexOf(id_rss.toString()) >= 0){
 				data.categories = ["Tecnologia"];
-			}else if(WorldTags.indexOf(id_rss.$oid.toString()) >= 0){
+			}else if(WorldTags.indexOf(id_rss.toString()) >= 0){
 				data.categories = ["Internacional"];
-			}else if(EconomyTags.indexOf(id_rss.$oid.toString()) >= 0){
+			}else if(EconomyTags.indexOf(id_rss.toString()) >= 0){
 				data.categories = ["Economia"];
-			}else if(DailyTags.indexOf(id_rss.$oid.toString()) >= 0){
+			}else if(DailyTags.indexOf(id_rss.toString()) >= 0){
 				data.categories = ["Cotidiano"];
 			}
 
