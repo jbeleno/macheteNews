@@ -66,17 +66,76 @@ exports.fetch = function(feed, id_rss) {
 var save = function(post, id_rss){
 	if(post){
 		// First I see if the article exist, if not I include it in the database
-		Article.findOne({ 'title': post.title }, 'name occupation', function (err, articleItem) {
+		Article.findOne({ 'title': post.title }, '_id', function (err, articleItem) {
 		  if (err) console.log('Problems in finding an article');
 
 		  if(!articleItem){
-		  	var art = new Article ({
+		  	var data = {
 				title: 			post.title,
 				description: 	post.description,
 				link: 			post.link,
 				pubDate: 		post.pubDate,
 				rss: 			id_rss
-			});
+			};
+
+			var SportTags = [
+				"56b176e393e381020404a8d5",
+				"56c8fbeea9899870208f1cd9",
+				"56c8fbeea9899870208f1ce5",
+				"56c8fbdda9899870208f1cce",
+				"56c8fbdda9899870208f1ccf",
+				"56c8fbdda9899870208f1cd0",
+				"56c8fbdda9899870208f1cd1",
+				"56c8fbdda9899870208f1cd2"
+			];
+
+			var PoliticTags = [
+				"56b176e393e381020404a8d0",
+				"56c8fbeea9899870208f1ce1",
+				"56c8fbdda9899870208f1ccb"
+			];
+
+			var TechnologyTags = [
+				"56b176e393e381020404a8db",
+				"56c8fbeea9899870208f1ce3"
+			];
+
+			var WorldTags = [
+				"56b176e393e381020404a8d1",
+				"56c8fbdda9899870208f1cc9",
+				"56c8fbeea9899870208f1cdd"
+			];
+
+			var EconomyTags = [
+				"56b176e393e381020404a8d2",
+				"56c8fbeea9899870208f1cdb",
+				"56c8fbdda9899870208f1cc6"
+			];
+
+			var DailyTags = [
+				"56b176e393e381020404a8d3",
+				"56c8fbeea9899870208f1cd8",
+				"56c8fbeea9899870208f1ce0",
+				"56c8fbdda9899870208f1cc7",
+				"56c8fbdda9899870208f1ccd",
+				"56c8fbdda9899870208f1cd3"
+			];
+
+			if(SportTags.indexOf(id_rss.$oid) >= 0){
+				data.categories = "Esportes";
+			}else if(PoliticTags.indexOf(id_rss.$oid) >= 0){
+				data.categories = "Política";
+			}else if(TechnologyTags.indexOf(id_rss.$oid) >= 0){
+				data.categories = "Tecnologia";
+			}else if(WorldTags.indexOf(id_rss.$oid) >= 0){
+				data.categories = "Internacional";
+			}else if(EconomyTags.indexOf(id_rss.$oid) >= 0){
+				data.categories = "Economia";
+			}else if(DailyTags.indexOf(id_rss.$oid) >= 0){
+				data.categories = "Cotidiano";
+			}
+
+		  	var art = new Article(data);
 			art.save(function (err) {if (err) console.log ('Error on save!')});
 		  }
 		

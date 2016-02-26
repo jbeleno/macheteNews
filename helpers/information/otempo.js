@@ -71,7 +71,7 @@ exports.categories = [
 		date: 			new Date().toISOString()
 	},
 	{
-		name:   		"Outro esportes",
+		name:   		"Outros esportes",
 		url: 			"http://www.otempo.com.br/rss/outros-esportes",
 		date: 			new Date().toISOString()
 	},{
