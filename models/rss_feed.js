@@ -186,7 +186,7 @@ var getParams = function(str) {
 **/
 var done = function(err) {
 	if (err) {
-		console.log(err, err.stack);
+		//console.log(err, err.stack);
 		//return process.exit(1);
 	}
 	//process.exit();
